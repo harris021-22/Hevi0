@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>HEVI Fitwear | Moda Fitness Premium</title>
+  <meta name="description" content="Moda fitness feminina de alta performance e sofisticação. Conjuntos, leggings zero transparência, tops e macaquinhos. 10% OFF no PIX ou até 10x sem juros.">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet (Distilled Mobile-First SPA) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%235B2333%22>H</text></svg>">
+</head>
+<body data-active-view="inicio">
+
+  <!-- TOPBAR (Distilled Single Authoritative Announcement) -->
+  <aside class="topbar" aria-label="Avisos">
+    <div class="container">
+      <div class="topbar-inner">
+        <span><strong>10% OFF</strong> NO PIX</span>
+        <span class="topbar-sep">•</span>
+        <span><strong>FRETE GRÁTIS</strong> ACIMA DE R$ 299</span>
+        <span class="topbar-sep desktop-only">•</span>
+        <span class="desktop-only">ATÉ <strong>10X SEM JUROS</strong></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN HEADER (Mobile: Logo Only Centered | Desktop: Logo + Nav + Actions) -->
+  <header class="header" id="mainHeader">
+    <div class="container">
+      <div class="header-inner">
+
+        <!-- Logo HEVI (Centralizado no mobile, alinhado à esquerda no desktop) -->
+        <a href="javascript:void(0)" onclick="handleLogoClick()" class="logo" aria-label="HEVI Fitwear Página Inicial">
+          <span class="logo-text">HEVI</span>
+          <span class="logo-sub">FITWEAR</span>
+        </a>
+
+        <!-- Desktop Navigation (Visível exclusivamente em telas desktop >= 1024px) -->
+        <nav aria-label="Menu Principal" class="desktop-nav">
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#vitrineSection" class="nav-link active">Lançamentos</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('conjuntos')">Conjuntos</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('legging')">Leggings</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('top')">Tops & Shorts</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('macaquinho')">Macaquinhos</a></li>
+            <li><a href="#comunidade" class="nav-link">#ElasUsam</a></li>
+          </ul>
+        </nav>
+
+        <!-- Desktop Header Actions (Visível exclusivamente em telas desktop >= 1024px) -->
+        <div class="header-actions desktop-only">
+          <button class="action-btn" id="searchToggleBtn" aria-label="Pesquisar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+
+          <button class="action-btn" aria-label="Meus Favoritos" onclick="showToast('Sua lista de desejos foi sincronizada!')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span class="action-badge" id="wishlistCountBadge">1</span>
+          </button>
+
+          <button class="action-btn" aria-label="Minha Conta" onclick="showToast('Área do Cliente HEVI')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </button>
+
+          <button class="action-btn" id="openCartBtn" aria-label="Sacola de Compras">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span class="action-badge" id="cartCountBadge">1</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Search Dropdown Overlay (Desktop) -->
+    <div class="search-modal" id="searchModal">
+      <div class="container">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Buscar peça, cor ou modelo..." autocomplete="off">
+        </div>
+        <div class="search-tags">
+          <span class="search-tag-pill" onclick="searchByTag('Zero Transparência')">Zero Transparência</span>
+          <span class="search-tag-pill" onclick="searchByTag('Terracota')">Terracota</span>
+          <span class="search-tag-pill" onclick="searchByTag('Marsala')">Marsala</span>
+          <span class="search-tag-pill" onclick="searchByTag('Navy')">Azul Marinho</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       VIEW: INÍCIO (Home Mobile View)
+       ========================================== -->
+
+  <!-- HIGHLIGHTS / STORIES (Harmonized 4-Column Equidistant Layout) -->
+  <section class="stories-section" data-mobile-view="inicio" aria-label="Destaques">
+    <div class="container">
+      <div class="stories-grid">
+        <div class="story-item" onclick="openStoryFilter('Elas Usam')">
+          <div class="story-ring">
+            <div class="story-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+          </div>
+          <span class="story-label">Elas Usam</span>
+        </div>
+
+        <div class="story-item" onclick="openStoryFilter('lancamentos')">
+          <div class="story-ring">
+            <div class="story-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+          </div>
+          <span class="story-label">Lançamentos</span>
+        </div>
+
+        <div class="story-item" onclick="openStoryFilter('Zero Transparência')">
+          <div class="story-ring">
+            <div class="story-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+          </div>
+          <span class="story-label">Zero Transp.</span>
+        </div>
+
+        <div class="story-item" onclick="openStoryFilter('Macaquinho')">
+          <div class="story-ring">
+            <div class="story-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
+            </div>
+          </div>
+          <span class="story-label">Macaquinhos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO BANNER -->
+  <section class="hero-section" data-mobile-view="inicio">
+    <div class="container">
+      <div class="hero-card">
+        <img class="hero-bg-img" src="assets/images/hevi_hero_banner.jpg" alt="Coleção HEVI Fitwear Terracota & Marsala" width="1280" height="720">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">A sua essência no <span>fit perfeito</span>.</h1>
+          <p class="hero-desc">Alta compressão, toque acetinado e zero transparência.</p>
+          <div class="hero-buttons">
+            <button type="button" class="btn-primary" onclick="navigateToColecao()">
+              Explorar Coleção
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP (Distilled Flat Bar, No Nested Cards) -->
+  <section class="benefits-section" id="pilares" data-mobile-view="inicio">
+    <div class="container">
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="benefit-text">
+            <h4 class="benefit-title">Zero Transparência</h4>
+            <p class="benefit-sub">Trama de alta densidade</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+          <div class="benefit-text">
+            <h4 class="benefit-title">Toque Acetinado</h4>
+            <p class="benefit-sub">Poliamida nobre encorpada</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </div>
+          <div class="benefit-text">
+            <h4 class="benefit-title">Frete Grátis</h4>
+            <p class="benefit-sub">Em compras acima de R$ 299</p>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          </div>
+          <div class="benefit-text">
+            <h4 class="benefit-title">1ª Troca Grátis</h4>
+            <p class="benefit-sub">Até 30 dias descomplicado</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS VISUAIS -->
+  <section class="categories-section" data-mobile-view="inicio">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Categorias</h2>
+      </div>
+
+      <div class="category-cards-grid">
+        <div class="category-card" onclick="openCategoryFromHome('conjuntos')">
+          <img class="category-card-bg" src="assets/images/hevi_hero_banner.jpg" alt="Conjuntos Fitness HEVI" loading="lazy">
+          <div class="category-card-overlay"></div>
+          <div class="category-card-content">
+            <h3 class="category-card-title">Conjuntos</h3>
+            <span class="category-card-cta">Explorar &rarr;</span>
+          </div>
+        </div>
+
+        <div class="category-card" onclick="openCategoryFromHome('legging')">
+          <img class="category-card-bg" src="assets/images/hevi_navy_set.jpg" alt="Leggings Zero Transparência HEVI" loading="lazy">
+          <div class="category-card-overlay"></div>
+          <div class="category-card-content">
+            <h3 class="category-card-title">Leggings</h3>
+            <span class="category-card-cta">Explorar &rarr;</span>
+          </div>
+        </div>
+
+        <div class="category-card" onclick="openCategoryFromHome('macaquinho')">
+          <img class="category-card-bg" src="assets/images/hevi_terracotta_set.jpg" alt="Macaquinhos Seamless HEVI" loading="lazy">
+          <div class="category-card-overlay"></div>
+          <div class="category-card-content">
+            <h3 class="category-card-title">Macaquinhos</h3>
+            <span class="category-card-cta">Explorar &rarr;</span>
+          </div>
+        </div>
+
+        <div class="category-card" onclick="openCategoryFromHome('top')">
+          <img class="category-card-bg" src="assets/images/hevi_navy_set.jpg" alt="Tops & Sustentação HEVI" loading="lazy">
+          <div class="category-card-overlay"></div>
+          <div class="category-card-content">
+            <h3 class="category-card-title">Tops & Shorts</h3>
+            <span class="category-card-cta">Explorar &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNERS PROMOCIONAIS DUPLOS -->
+  <section class="promo-duo-section" data-mobile-view="inicio">
+    <div class="container">
+      <div class="promo-duo-grid">
+        <div class="promo-banner terracotta">
+          <img class="promo-banner-img" src="assets/images/hevi_terracotta_set.jpg" alt="Coleção Terracota & Marsala" loading="lazy">
+          <div class="promo-banner-overlay"></div>
+          <div class="promo-content">
+            <h3 class="promo-title">Linha Terracota & Marsala</h3>
+            <button class="btn-promo" onclick="openCategoryFromHome('Terracota')">Explorar Coleção</button>
+          </div>
+        </div>
+
+        <div class="promo-banner">
+          <img class="promo-banner-img" src="assets/images/hevi_navy_set.jpg" alt="Coleção Azul Marinho Noturno" loading="lazy">
+          <div class="promo-banner-overlay"></div>
+          <div class="promo-content">
+            <h3 class="promo-title">Linha Midnight Navy</h3>
+            <button class="btn-promo" onclick="openCategoryFromHome('Navy')">Explorar Coleção</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM (#HeviFitwear à esquerda e Símbolo do Instagram à direita) -->
+  <section class="instagram-section" id="comunidade" data-mobile-view="inicio">
+    <div class="container">
+      <div class="insta-header">
+        <h2 class="section-title">#HeviFitwear</h2>
+        <a href="https://www.instagram.com/hevi.fitwear/" target="_blank" rel="noopener noreferrer" class="insta-icon-btn" aria-label="Acessar Instagram @hevi.fitwear">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+      </div>
+
+      <div class="insta-grid">
+        <div class="insta-item" onclick="window.open('https://www.instagram.com/hevi.fitwear/', '_blank')">
+          <img class="insta-img" src="assets/images/hevi_hero_banner.jpg" alt="Look HEVI Instagram 1" loading="lazy">
+          <div class="insta-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+        </div>
+
+        <div class="insta-item" onclick="window.open('https://www.instagram.com/hevi.fitwear/', '_blank')">
+          <img class="insta-img" src="assets/images/hevi_navy_set.jpg" alt="Look HEVI Instagram 2" loading="lazy">
+          <div class="insta-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+        </div>
+
+        <div class="insta-item" onclick="window.open('https://www.instagram.com/hevi.fitwear/', '_blank')">
+          <img class="insta-img" src="assets/images/hevi_terracotta_set.jpg" alt="Look HEVI Instagram 3" loading="lazy">
+          <div class="insta-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER (Distilled: Punchy & Direct) -->
+  <section class="newsletter-section" data-mobile-view="inicio">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text">
+          <h3 class="newsletter-title">10% OFF no seu primeiro pedido</h3>
+          <p class="newsletter-desc">Cadastre-se e use o cupom <strong>HEVI10</strong> no checkout.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Seu e-mail..." required>
+          <button type="submit" class="newsletter-btn">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       VIEW: COLEÇÃO (Collection Mobile View & Desktop Vitrine)
+       ========================================== -->
+  <section class="showcase-section" id="vitrineSection" data-mobile-view="colecao">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nossa Coleção</h2>
+      </div>
+
+      <!-- Filtros por categoria -->
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="todos">Todos</button>
+        <button class="filter-pill" data-filter="mais-vendidos">Mais Vendidos</button>
+        <button class="filter-pill" data-filter="lancamentos">Lançamentos</button>
+        <button class="filter-pill" data-filter="conjuntos">Conjuntos</button>
+        <button class="filter-pill" data-filter="leggings">Leggings</button>
+      </div>
+
+      <!-- Grade dos Produtos -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Renderizado dinamicamente via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       VIEW: BUSCAR (Dedicated Mobile Search View)
+       ========================================== -->
+  <section class="mobile-search-section" id="mobileSearchSection" data-mobile-view="buscar">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Buscar Peças</h2>
+      </div>
+
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="mobileViewSearchInput" class="search-input" placeholder="Digite uma cor, modelo ou peça..." autocomplete="off">
+        <button type="button" class="btn-clear-search" id="clearSearchBtn" onclick="clearMobileSearch()" aria-label="Limpar busca" style="display: none;">✕</button>
+      </div>
+
+      <div class="search-tags">
+        <span class="search-tag-pill" onclick="searchByTagInView('Zero Transparência')">Zero Transparência</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Terracota')">Terracota</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Marsala')">Marsala</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Navy')">Azul Marinho</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Macaquinho')">Macaquinhos</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Conjuntos')">Conjuntos</span>
+      </div>
+
+      <div class="mobile-search-results">
+        <div class="products-grid" id="mobileSearchResultsGrid">
+          <!-- Renderizado dinamicamente via app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" data-mobile-view="inicio">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-text">HEVI</span>
+            <span class="logo-sub" style="color: #E29F80;">FITWEAR</span>
+          </a>
+          <p class="footer-brand-desc">Moda fitness premium com zero transparência e alta compressão para mulheres que unem performance e sofisticação.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/hevi.fitwear/" target="_blank" class="footer-social-btn" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Categorias</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('conjuntos')">Conjuntos</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('legging')">Leggings</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('top')">Tops & Shorts</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('macaquinho')">Macaquinhos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Atendimento</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>contato@hevifitwear.com.br</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>(11) 98765-4321</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          HEVI FITWEAR LTDA © 2026. CNPJ: 45.123.789/0001-00.
+        </div>
+        <div class="payment-badges">
+          <span class="payment-badge">PIX 10% OFF</span>
+          <span class="payment-badge">CARTÃO DE CRÉDITO</span>
+          <span class="payment-badge">BOLETO</span>
+          <span class="payment-badge secure">SSL SEGURO</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM NAVIGATION BAR (SPA View Switcher: Início, Coleção, Buscar, Sacola) -->
+  <nav class="bottom-nav-bar" aria-label="Navegação Mobile">
+    <button type="button" class="bottom-nav-item active" data-nav-target="inicio" onclick="switchMobileView('inicio')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Início</span>
+    </button>
+    <button type="button" class="bottom-nav-item" data-nav-target="colecao" onclick="switchMobileView('colecao')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Coleção</span>
+    </button>
+    <button type="button" class="bottom-nav-item" data-nav-target="buscar" onclick="switchMobileView('buscar')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <span>Buscar</span>
+    </button>
+    <button type="button" class="bottom-nav-item" data-nav-target="sacola" onclick="switchMobileView('sacola')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      <span class="bottom-nav-badge" id="bottomNavCartBadge">1</span>
+      <span>Sacola</span>
+    </button>
+  </nav>
+
+  <!-- CART DRAWER SLIDE-OVER -->
+  <div class="cart-drawer-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Sacola de Compras">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        Sua Sacola <span id="drawerItemCount" style="color: var(--hevi-terracotta); font-size: 0.95rem;">(1)</span>
+      </h3>
+      <button class="cart-close-btn" id="closeCartBtn" aria-label="Fechar Sacola">✕</button>
+    </div>
+
+    <!-- Barra de Progresso do Frete Grátis -->
+    <div class="cart-shipping-bar">
+      <div class="shipping-msg" id="shippingMsg">
+        Faltam <strong style="color: var(--hevi-marsala);">R$ 119,09</strong> para <strong>FRETE GRÁTIS!</strong>
+      </div>
+      <div class="shipping-progress-track">
+        <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 60%;"></div>
+      </div>
+    </div>
+
+    <!-- Lista de Itens do Carrinho -->
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Injetado dinamicamente pelo app.js -->
+    </div>
+
+    <!-- Rodapé da Gaveta de Compras -->
+    <div class="cart-drawer-footer">
+      <div class="coupon-box">
+        <input type="text" id="cartCouponInput" class="coupon-input" placeholder="Cupom (Ex: HEVI10)">
+        <button class="coupon-btn" id="applyCouponBtn">Aplicar</button>
+      </div>
+
+      <div class="cart-summary-row">
+        <span>Subtotal:</span>
+        <span id="cartSubtotal">R$ 179,91</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Desconto:</span>
+        <span id="cartDiscount" style="color: var(--hevi-marsala); font-weight: 700;">R$ 0,00</span>
+      </div>
+
+      <div class="cart-summary-row total">
+        <span>Total no PIX:</span>
+        <span id="cartTotal" style="color: var(--hevi-marsala);">R$ 179,91</span>
+      </div>
+
+      <button class="cart-checkout-btn" onclick="showToast('Redirecionando para o Checkout Seguro com 10% OFF no PIX!')">
+        Finalizar Pedido
+      </button>
+    </div>
+  </aside>
+
+  <!-- QUICK VIEW MODAL (Bottom Sheet on Mobile, Centered on Desktop) -->
+  <div class="modal-backdrop" id="quickViewBackdrop">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar Modal">✕</button>
+      
+      <div class="modal-gallery">
+        <img id="modalMainImg" class="modal-main-img" src="assets/images/hevi_hero_banner.jpg" alt="Visualização do Produto">
+      </div>
+
+      <div class="modal-details">
+        <h2 class="modal-title" id="modalTitle">Conjunto Sculp Terracota Seamless</h2>
+        
+        <div class="modal-price-box">
+          <div class="modal-price-pix" id="modalPricePix">R$ 179,91 no PIX</div>
+          <div class="modal-price-sub">ou 10x de R$ 19,99 sem juros</div>
+        </div>
+
+        <p class="modal-desc" id="modalDesc">
+          Conjunto de alta compressão em poliamida nobre com tecnologia de trama densa zero transparência.
+        </p>
+
+        <div class="modal-selector-label">
+          <span>Cor:</span>
+        </div>
+        <div class="modal-color-group" id="modalColorGroup">
+          <!-- Renderizado via app.js -->
+        </div>
+
+        <div class="modal-selector-label">
+          <span>Tamanho:</span>
+          <button type="button" class="btn-size-guide" onclick="showToast('Tabela de medidas: P (36-38), M (40-42), G (44), GG (46)')">Tabela de Medidas</button>
+        </div>
+        <div class="modal-size-group" id="modalSizeGroup">
+          <!-- Renderizado via app.js -->
+        </div>
+
+        <button class="btn-primary" id="modalAddCartBtn">
+          Adicionar à Sacola
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>

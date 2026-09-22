@@ -16,7 +16,7 @@ const PRODUCTS_DATA = [
     imgPrimary: 'assets/images/hevi_hero_banner.jpg',
     imgHover: 'assets/images/hevi_terracotta_set.jpg',
     badge: 'Zero Transparência',
-    colors: ['#8A5338', '#5B2333', '#1D2A44', '#E8DDD1'],
+    colors: ['#8A5338', '#5B2333', '#1D2A44', '#E6D8CB'],
     sizes: ['P', 'M', 'G', 'GG'],
     description: 'Conjunto de alta compressão em poliamida nobre com trama densa zero transparência. Top com sustentação reforçada e legging com cós anatômico.'
   },
@@ -76,7 +76,7 @@ const PRODUCTS_DATA = [
     imgPrimary: 'assets/images/hevi_navy_set.jpg',
     imgHover: 'assets/images/hevi_terracotta_set.jpg',
     badge: 'Médio Impacto',
-    colors: ['#1D2A44', '#E8DDD1', '#5B2333'],
+    colors: ['#1D2A44', '#E6D8CB', '#5B2333'],
     sizes: ['P', 'M', 'G'],
     description: 'Top minimalista com forro duplo e entrada para bojo removível. Costas em tiras sofisticadas que proporcionam liberdade total de movimentos.'
   },
@@ -106,7 +106,7 @@ const PRODUCTS_DATA = [
     imgPrimary: 'assets/images/hevi_hero_banner.jpg',
     imgHover: 'assets/images/hevi_terracotta_set.jpg',
     badge: 'Trend 2026',
-    colors: ['#5B2333', '#E8DDD1', '#8A5338'],
+    colors: ['#5B2333', '#E6D8CB', '#8A5338'],
     sizes: ['P', 'M', 'G'],
     description: 'Design de um ombro só com sustentação interna cruzada. Um dos ícones mais cobiçados da temporada que transita do treino ao look casual chic.'
   },
@@ -127,6 +127,15 @@ const PRODUCTS_DATA = [
   }
 ];
 
+// Mapa de Cores Oficiais HEVI
+const COLOR_NAMES = {
+  '#8A5338': 'Terracota',
+  '#5B2333': 'Bordô Marsala',
+  '#1D2A44': 'Azul Marinho Noturno',
+  '#E6D8CB': 'Off-White Nude',
+  '#2C2C2B': 'Preto Grafite'
+};
+
 // Estado Global da Aplicação
 const State = {
   cart: [
@@ -146,7 +155,8 @@ const State = {
   freeShippingThreshold: 299.00,
   activeFilter: 'todos',
   searchQuery: '',
-  mobileActiveView: 'inicio'
+  mobileActiveView: 'inicio',
+  lastRemoved: null
 };
 
 // Inicialização
@@ -524,16 +534,29 @@ function updateCartQty(idx, delta) {
   if (State.cart[idx]) {
     State.cart[idx].qty += delta;
     if (State.cart[idx].qty <= 0) {
-      State.cart.splice(idx, 1);
+      removeCartItem(idx);
+      return;
     }
   }
   updateCartUI();
 }
 
 function removeCartItem(idx) {
-  State.cart.splice(idx, 1);
+  if (!State.cart[idx]) return;
+  const removed = State.cart.splice(idx, 1)[0];
+  State.lastRemoved = { item: removed, index: idx };
   updateCartUI();
-  showToast('Item removido da sacola.');
+  showToast(`"${removed.title}" removido.`, 'Desfazer', () => restoreLastRemovedItem());
+}
+
+function restoreLastRemovedItem() {
+  if (State.lastRemoved && State.lastRemoved.item) {
+    State.cart.splice(State.lastRemoved.index, 0, State.lastRemoved.item);
+    const restoredTitle = State.lastRemoved.item.title;
+    State.lastRemoved = null;
+    updateCartUI();
+    showToast(`"${restoredTitle}" restaurado à sacola!`);
+  }
 }
 
 function updateCartUI() {
@@ -568,11 +591,11 @@ function updateCartUI() {
     const diff = State.freeShippingThreshold - subtotal;
     if (diff <= 0) {
       shippingMsg.innerHTML = `<strong style="color: #2E7D32;">Parabéns! Você tem FRETE GRÁTIS.</strong>`;
-      shippingFill.style.width = '100%';
+      shippingFill.style.transform = 'scaleX(1)';
     } else {
       const pct = Math.min(100, Math.max(10, (subtotal / State.freeShippingThreshold) * 100));
       shippingMsg.innerHTML = `Faltam <strong style="color: var(--hevi-marsala);">R$ ${diff.toFixed(2).replace('.', ',')}</strong> para <strong>FRETE GRÁTIS</strong>`;
-      shippingFill.style.width = `${pct}%`;
+      shippingFill.style.transform = `scaleX(${pct / 100})`;
     }
   }
 
@@ -609,7 +632,9 @@ function updateCartUI() {
             <button class="qty-btn" onclick="updateCartQty(${idx}, 1)" aria-label="Aumentar">+</button>
           </div>
           <div class="cart-item-price">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
-          <button class="cart-item-remove" onclick="removeCartItem(${idx})" aria-label="Remover">✕</button>
+          <button class="cart-item-remove" onclick="removeCartItem(${idx})" aria-label="Remover">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -648,6 +673,10 @@ function openQuickView(prodId) {
 
   let selectedSize = product.sizes[0];
   let selectedColor = product.colors[0];
+  let selectedColorName = COLOR_NAMES[selectedColor] || 'Terracota';
+
+  const colorLabelEl = document.getElementById('modalSelectedColorName');
+  if (colorLabelEl) colorLabelEl.textContent = selectedColorName;
 
   if (sizeGroup) {
     sizeGroup.innerHTML = product.sizes.map((s, i) => `
@@ -657,26 +686,34 @@ function openQuickView(prodId) {
 
   if (colorGroup) {
     colorGroup.innerHTML = product.colors.map((c, i) => `
-      <span class="color-dot ${i === 0 ? 'active' : ''}" style="background-color: ${c};" onclick="selectModalColor(this, '${c}')" title="Cor"></span>
+      <span class="color-dot ${i === 0 ? 'active' : ''}" style="background-color: ${c};" onclick="selectModalColor(this, '${c}')" title="${COLOR_NAMES[c] || 'Cor'}"></span>
     `).join('');
   }
 
+  window.modalCurrentColor = selectedColor;
+  window.modalCurrentColorName = selectedColorName;
+
   if (addBtn) {
     addBtn.onclick = () => {
+      const activeColor = window.modalCurrentColor || selectedColor;
+      const activeColorName = window.modalCurrentColorName || selectedColorName;
+      const activeSizeBtn = document.querySelector('.modal-size-btn.active');
+      const activeSize = activeSizeBtn ? activeSizeBtn.textContent.trim() : selectedSize;
+
       State.cart.push({
         id: product.id,
         title: product.title,
         price: product.pricePix,
-        size: selectedSize,
-        color: selectedColor,
-        colorName: 'Cor Selecionada',
+        size: activeSize,
+        color: activeColor,
+        colorName: activeColorName,
         img: product.imgPrimary,
         qty: 1
       });
       updateCartUI();
       closeQuickView();
       openCartDrawer();
-      showToast(`"${product.title}" adicionado à sacola.`);
+      showToast(`"${product.title}" (${activeColorName}) adicionado à sacola.`);
     };
   }
 
@@ -694,6 +731,11 @@ function selectModalSize(btn, size) {
 function selectModalColor(dot, color) {
   document.querySelectorAll('#modalColorGroup .color-dot').forEach(d => d.classList.remove('active'));
   dot.classList.add('active');
+  const name = COLOR_NAMES[color] || 'Selecionada';
+  const colorLabelEl = document.getElementById('modalSelectedColorName');
+  if (colorLabelEl) colorLabelEl.textContent = name;
+  window.modalCurrentColor = color;
+  window.modalCurrentColorName = name;
 }
 
 function closeQuickView() {
@@ -755,26 +797,31 @@ function setupNewsletter() {
   }
 }
 
-// Toast
-function showToast(msg) {
-  let toast = document.getElementById('toastNotification');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'toastNotification';
-    toast.className = 'toast-notification';
-    toast.innerHTML = `
-      <span class="toast-icon">✓</span>
-      <span id="toastMsg"></span>
-    `;
-    document.body.appendChild(toast);
-  }
-
+// Toast com suporte a ação (ex: Desfazer)
+function showToast(msg, actionLabel = null, onAction = null) {
+  const toast = document.getElementById('toastNotification');
   const toastMsg = document.getElementById('toastMsg');
-  if (toastMsg) toastMsg.textContent = msg;
+  const actionBtn = document.getElementById('toastActionBtn');
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = msg;
+
+  if (actionLabel && onAction && actionBtn) {
+    actionBtn.textContent = actionLabel;
+    actionBtn.style.display = 'inline-flex';
+    actionBtn.onclick = (e) => {
+      e.stopPropagation();
+      onAction();
+      toast.classList.remove('active');
+    };
+  } else if (actionBtn) {
+    actionBtn.style.display = 'none';
+    actionBtn.onclick = null;
+  }
 
   toast.classList.add('active');
   clearTimeout(window.toastTimer);
   window.toastTimer = setTimeout(() => {
     toast.classList.remove('active');
-  }, 3200);
+  }, actionLabel ? 5000 : 3200);
 }

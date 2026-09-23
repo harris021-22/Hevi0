@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>HEVI Fitwear | Moda Fitness Premium</title>
+  <title>HEVI Fitwear | Moda Fitness Premium - Coleção Mulheres</title>
   <meta name="description" content="Moda fitness feminina de alta performance e sofisticação. Conjuntos, leggings zero transparência, tops e macaquinhos. 10% OFF no PIX ou até 10x sem juros.">
   <meta name="theme-color" content="#E6D8CB">
   
@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet (Distilled Mobile-First SPA) -->
-  <link rel="stylesheet" href="css/style.css?v=2.0">
+  <link rel="stylesheet" href="css/style.css?v=2.2">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%235B2333%22>H</text></svg>">
 </head>
 <body data-active-view="inicio">
@@ -36,19 +36,39 @@
     <div class="container">
       <div class="header-inner">
 
+        <!-- Botão Hambúrguer Mobile (Lado Esquerdo da Tela) -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação" aria-expanded="false" onclick="openNavDrawer()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
         <!-- Logo Oficial HEVI (Centralizado no mobile, alinhado à esquerda no desktop) -->
         <a href="javascript:void(0)" onclick="handleLogoClick()" class="logo" aria-label="HEVI Fitwear Página Inicial">
           <img src="assets/images/hevi_logo.png" alt="HEVI Fitwear" class="logo-img" width="114" height="40">
         </a>
 
+        <!-- Botão da Sacola Mobile (Canto Superior Direito) -->
+        <button class="mobile-cart-btn" id="mobileHeaderCartBtn" aria-label="Sacola de Compras" onclick="openCartDrawer()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="action-badge" id="mobileCartCountBadge">0</span>
+        </button>
+
         <!-- Desktop Navigation (Visível exclusivamente em telas desktop >= 1024px) -->
         <nav aria-label="Menu Principal" class="desktop-nav">
           <ul class="nav-menu" id="navMenu">
-            <li><a href="#vitrineSection" class="nav-link active">Lançamentos</a></li>
-            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('conjuntos')">Conjuntos</a></li>
-            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('legging')">Leggings</a></li>
-            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('top')">Tops & Shorts</a></li>
-            <li><a href="#vitrineSection" class="nav-link" onclick="searchByTag('macaquinho')">Macaquinhos</a></li>
+            <li><a href="#vitrineSection" class="nav-link active">Coleção Mulheres</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="openCategoryFromHome('conjunto-short')">Conjunto de Short</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="openCategoryFromHome('conjunto-camisa')">Conjunto de Camisa</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="openCategoryFromHome('macaquinho')">Macaquinho</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="openCategoryFromHome('macacao')">Macacão</a></li>
+            <li><a href="#vitrineSection" class="nav-link" onclick="openCategoryFromHome('blusa')">Blusa</a></li>
             <li><a href="#comunidade" class="nav-link">#ElasUsam</a></li>
           </ul>
         </nav>
@@ -61,7 +81,7 @@
 
           <button class="action-btn" aria-label="Meus Favoritos" onclick="showToast('Sua lista de desejos foi sincronizada!')">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            <span class="action-badge" id="wishlistCountBadge">1</span>
+            <span class="action-badge" id="wishlistCountBadge">0</span>
           </button>
 
           <button class="action-btn" aria-label="Minha Conta" onclick="showToast('Área do Cliente HEVI')">
@@ -70,7 +90,7 @@
 
           <button class="action-btn" id="openCartBtn" aria-label="Sacola de Compras">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            <span class="action-badge" id="cartCountBadge">1</span>
+            <span class="action-badge" id="cartCountBadge">0</span>
           </button>
         </div>
 
@@ -98,48 +118,7 @@
        VIEW: INÍCIO (Home Mobile View)
        ========================================== -->
 
-  <!-- HIGHLIGHTS / STORIES (Authentic Editorial Highlights) -->
-  <section class="stories-section" data-mobile-view="inicio" aria-label="Destaques">
-    <div class="container">
-      <div class="stories-grid">
-        <div class="story-item" onclick="openStoryFilter('Elas Usam')">
-          <div class="story-ring">
-            <div class="story-media">
-              <img src="assets/images/story_elas_usam.jpg" alt="Elas Usam" class="story-thumb" loading="lazy">
-            </div>
-          </div>
-          <span class="story-label">Elas Usam</span>
-        </div>
 
-        <div class="story-item" onclick="openStoryFilter('lancamentos')">
-          <div class="story-ring">
-            <div class="story-media">
-              <img src="assets/images/story_lancamentos.jpg" alt="Lançamentos" class="story-thumb" loading="lazy">
-            </div>
-          </div>
-          <span class="story-label">Lançamentos</span>
-        </div>
-
-        <div class="story-item" onclick="openStoryFilter('Zero Transparência')">
-          <div class="story-ring">
-            <div class="story-media">
-              <img src="assets/images/story_zero_transp.jpg" alt="Zero Transparência" class="story-thumb" loading="lazy">
-            </div>
-          </div>
-          <span class="story-label">Zero Transp.</span>
-        </div>
-
-        <div class="story-item" onclick="openStoryFilter('Macaquinho')">
-          <div class="story-ring">
-            <div class="story-media">
-              <img src="assets/images/story_macaquinhos.jpg" alt="Macaquinhos" class="story-thumb" loading="lazy">
-            </div>
-          </div>
-          <span class="story-label">Macaquinhos</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- HERO BANNER -->
   <section class="hero-section" data-mobile-view="inicio">
@@ -152,7 +131,7 @@
           <p class="hero-desc">Alta compressão, toque acetinado e zero transparência.</p>
           <div class="hero-buttons">
             <button type="button" class="btn-primary" onclick="navigateToColecao()">
-              Explorar Coleção
+              Explorar Coleção Mulheres
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
           </div>
@@ -217,38 +196,47 @@
       </div>
 
       <div class="category-cards-grid">
-        <div class="category-card" onclick="openCategoryFromHome('conjuntos')">
-          <img class="category-card-bg" src="assets/images/hevi_hero_banner.jpg" alt="Conjuntos Fitness HEVI" loading="lazy">
+        <div class="category-card" onclick="openCategoryFromHome('conjunto-short')">
+          <img class="category-card-bg" src="assets/images/conjunto_short_hevi.jpg" alt="Conjunto de Short HEVI" loading="lazy">
           <div class="category-card-overlay"></div>
           <div class="category-card-content">
-            <h3 class="category-card-title">Conjuntos</h3>
+            <h3 class="category-card-title">Conjunto de Short</h3>
             <span class="category-card-cta">Explorar &rarr;</span>
           </div>
         </div>
 
-        <div class="category-card" onclick="openCategoryFromHome('legging')">
-          <img class="category-card-bg" src="assets/images/hevi_navy_set.jpg" alt="Leggings Zero Transparência HEVI" loading="lazy">
+        <div class="category-card" onclick="openCategoryFromHome('conjunto-camisa')">
+          <img class="category-card-bg" src="assets/images/conjunto_camisa_hevi.jpg" alt="Conjunto de Camisa HEVI" loading="lazy">
           <div class="category-card-overlay"></div>
           <div class="category-card-content">
-            <h3 class="category-card-title">Leggings</h3>
+            <h3 class="category-card-title">Conjunto de Camisa</h3>
             <span class="category-card-cta">Explorar &rarr;</span>
           </div>
         </div>
 
         <div class="category-card" onclick="openCategoryFromHome('macaquinho')">
-          <img class="category-card-bg" src="assets/images/hevi_terracotta_set.jpg" alt="Macaquinhos Seamless HEVI" loading="lazy">
+          <img class="category-card-bg" src="assets/images/macaquinho_hevi.jpg" alt="Macaquinhos Seamless HEVI" loading="lazy">
           <div class="category-card-overlay"></div>
           <div class="category-card-content">
-            <h3 class="category-card-title">Macaquinhos</h3>
+            <h3 class="category-card-title">Macaquinho</h3>
             <span class="category-card-cta">Explorar &rarr;</span>
           </div>
         </div>
 
-        <div class="category-card" onclick="openCategoryFromHome('top')">
-          <img class="category-card-bg" src="assets/images/hevi_navy_set.jpg" alt="Tops & Sustentação HEVI" loading="lazy">
+        <div class="category-card" onclick="openCategoryFromHome('macacao')">
+          <img class="category-card-bg" src="assets/images/macacao_hevi.jpg" alt="Macacão Longo HEVI" loading="lazy">
           <div class="category-card-overlay"></div>
           <div class="category-card-content">
-            <h3 class="category-card-title">Tops & Shorts</h3>
+            <h3 class="category-card-title">Macacão</h3>
+            <span class="category-card-cta">Explorar &rarr;</span>
+          </div>
+        </div>
+
+        <div class="category-card" onclick="openCategoryFromHome('blusa')">
+          <img class="category-card-bg" src="assets/images/blusa_hevi.jpg" alt="Blusas Térmicas HEVI" loading="lazy">
+          <div class="category-card-overlay"></div>
+          <div class="category-card-content">
+            <h3 class="category-card-title">Blusa</h3>
             <span class="category-card-cta">Explorar &rarr;</span>
           </div>
         </div>
@@ -316,38 +304,24 @@
     </div>
   </section>
 
-  <!-- NEWSLETTER (Distilled: Punchy & Direct) -->
-  <section class="newsletter-section" data-mobile-view="inicio">
-    <div class="container">
-      <div class="newsletter-inner">
-        <div class="newsletter-text">
-          <h3 class="newsletter-title">10% OFF no seu primeiro pedido</h3>
-          <p class="newsletter-desc">Cadastre-se e use o cupom <strong>HEVI10</strong> no checkout.</p>
-        </div>
-        <form class="newsletter-form" id="newsletterForm">
-          <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Seu e-mail..." required>
-          <button type="submit" class="newsletter-btn">Cadastrar</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- ==========================================
        VIEW: COLEÇÃO (Collection Mobile View & Desktop Vitrine)
        ========================================== -->
   <section class="showcase-section" id="vitrineSection" data-mobile-view="colecao">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Nossa Coleção</h2>
+        <h2 class="section-title">Coleção Mulheres</h2>
+        <p class="section-sub" style="font-size: 0.92rem; color: var(--hevi-graphite-muted); margin-top: 6px;">Peças de alta performance com modelagem anatômica e zero transparência.</p>
       </div>
 
       <!-- Filtros por categoria -->
       <div class="filter-pills">
         <button class="filter-pill active" data-filter="todos">Todos</button>
-        <button class="filter-pill" data-filter="mais-vendidos">Mais Vendidos</button>
-        <button class="filter-pill" data-filter="lancamentos">Lançamentos</button>
-        <button class="filter-pill" data-filter="conjuntos">Conjuntos</button>
-        <button class="filter-pill" data-filter="leggings">Leggings</button>
+        <button class="filter-pill" data-filter="conjunto-short">Conjunto de Short</button>
+        <button class="filter-pill" data-filter="conjunto-camisa">Conjunto de Camisa</button>
+        <button class="filter-pill" data-filter="macaquinho">Macaquinho</button>
+        <button class="filter-pill" data-filter="macacao">Macacão</button>
+        <button class="filter-pill" data-filter="blusa">Blusa</button>
       </div>
 
       <!-- Grade dos Produtos -->
@@ -375,12 +349,12 @@
       </div>
 
       <div class="search-tags">
+        <span class="search-tag-pill" onclick="searchByTagInView('Conjunto de Short')">Conjunto de Short</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Conjunto de Camisa')">Conjunto de Camisa</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Macaquinho')">Macaquinho</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Macacão')">Macacão</span>
+        <span class="search-tag-pill" onclick="searchByTagInView('Blusa')">Blusa</span>
         <span class="search-tag-pill" onclick="searchByTagInView('Zero Transparência')">Zero Transparência</span>
-        <span class="search-tag-pill" onclick="searchByTagInView('Terracota')">Terracota</span>
-        <span class="search-tag-pill" onclick="searchByTagInView('Marsala')">Marsala</span>
-        <span class="search-tag-pill" onclick="searchByTagInView('Navy')">Azul Marinho</span>
-        <span class="search-tag-pill" onclick="searchByTagInView('Macaquinho')">Macaquinhos</span>
-        <span class="search-tag-pill" onclick="searchByTagInView('Conjuntos')">Conjuntos</span>
       </div>
 
       <div class="mobile-search-results">
@@ -396,7 +370,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo">
+          <a href="index.html" class="footer-logo">
             <span class="logo-text">HEVI</span>
             <span class="logo-sub" style="color: #E29F80;">FITWEAR</span>
           </a>
@@ -411,60 +385,148 @@
         <div>
           <h3 class="footer-col-title">Categorias</h3>
           <ul class="footer-links">
-            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('conjuntos')">Conjuntos</a></li>
-            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('legging')">Leggings</a></li>
-            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('top')">Tops & Shorts</a></li>
-            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('macaquinho')">Macaquinhos</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('conjunto-short')">Conjunto de Short</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('conjunto-camisa')">Conjunto de Camisa</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('macaquinho')">Macaquinho</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('macacao')">Macacão</a></li>
+            <li><a href="javascript:void(0)" class="footer-link" onclick="openCategoryFromHome('blusa')">Blusa</a></li>
           </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-col-title">Atendimento</h3>
-          <div class="footer-contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <span>contato@hevifitwear.com.br</span>
-          </div>
-          <div class="footer-contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <span>(11) 98765-4321</span>
-          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>
-          HEVI FITWEAR LTDA © 2026. CNPJ: 45.123.789/0001-00.
+        <div class="footer-copyright">
+          HEVI FITWEAR © 2026. Todos os direitos reservados.
         </div>
         <div class="payment-badges">
           <span class="payment-badge">PIX 10% OFF</span>
           <span class="payment-badge">CARTÃO DE CRÉDITO</span>
           <span class="payment-badge">BOLETO</span>
-          <span class="payment-badge secure">SSL SEGURO</span>
+        </div>
+        <div class="footer-developer">
+          Desenvolvido por <a href="https://wa.me/5521964551053?text=Ol%C3%A1%20Andrew%2C%20vi%20o%20site%20da%20HEVI%20Fitwear%20e%20gostaria%20de%20conversar%21" target="_blank" rel="noopener noreferrer" class="footer-dev-link">Andrew Harris</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- MOBILE BOTTOM NAVIGATION BAR (SPA View Switcher: Início, Coleção, Buscar, Sacola) -->
-  <nav class="bottom-nav-bar" aria-label="Navegação Mobile">
-    <button type="button" class="bottom-nav-item active" data-nav-target="inicio" onclick="switchMobileView('inicio')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      <span>Início</span>
-    </button>
-    <button type="button" class="bottom-nav-item" data-nav-target="colecao" onclick="switchMobileView('colecao')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-      <span>Coleção</span>
-    </button>
-    <button type="button" class="bottom-nav-item" data-nav-target="buscar" onclick="switchMobileView('buscar')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <span>Buscar</span>
-    </button>
-    <button type="button" class="bottom-nav-item" data-nav-target="sacola" onclick="switchMobileView('sacola')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-      <span class="bottom-nav-badge" id="bottomNavCartBadge">1</span>
-      <span>Sacola</span>
-    </button>
-  </nav>
+  <!-- LATERAL NAVIGATION DRAWER (Menu Hambúrguer do Lado Esquerdo) -->
+  <div class="nav-drawer-backdrop" id="navDrawerBackdrop" onclick="closeNavDrawer()"></div>
+  <aside class="nav-drawer" id="navDrawer" aria-label="Menu de Navegação Principal">
+    <div class="nav-drawer-header">
+      <div class="nav-drawer-brand">
+        <img src="assets/images/hevi_logo.png" alt="HEVI Fitwear" class="drawer-logo-img" width="104" height="36">
+      </div>
+      <button class="nav-drawer-close" id="closeNavDrawerBtn" aria-label="Fechar menu" onclick="closeNavDrawer()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="nav-drawer-body">
+      <!-- Navegação Principal (Origem: Antigo Menu Inferior) -->
+      <div class="nav-drawer-section-label">Navegação</div>
+      <ul class="nav-drawer-list">
+        <li>
+          <button type="button" class="nav-drawer-item active" data-nav-target="inicio" onclick="handleDrawerNav('inicio')">
+            <span class="drawer-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </span>
+            <span class="drawer-item-text">Início</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-item" data-nav-target="colecao" onclick="handleDrawerNav('colecao')">
+            <span class="drawer-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </span>
+            <span class="drawer-item-text">Coleção Mulheres</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-item" data-nav-target="buscar" onclick="handleDrawerNav('buscar')">
+            <span class="drawer-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <span class="drawer-item-text">Buscar Peças</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-item" data-nav-target="sacola" onclick="handleDrawerNav('sacola')">
+            <span class="drawer-item-icon nav-drawer-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <span class="nav-drawer-badge" id="navDrawerCartBadge">0</span>
+            </span>
+            <span class="drawer-item-text">Sacola de Compras</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Categorias em Destaque -->
+      <div class="nav-drawer-section-label">Categorias</div>
+      <ul class="nav-drawer-list categories-sublist">
+        <li>
+          <button type="button" class="nav-drawer-subitem" onclick="handleDrawerCategory('conjunto-short')">
+            <span>Conjunto de Short</span>
+            <span class="drawer-subitem-tag">Destaque</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-subitem" onclick="handleDrawerCategory('conjunto-camisa')">
+            <span>Conjunto de Camisa</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-subitem" onclick="handleDrawerCategory('macaquinho')">
+            <span>Macaquinho</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-subitem" onclick="handleDrawerCategory('macacao')">
+            <span>Macacão</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-subitem" onclick="handleDrawerCategory('blusa')">
+            <span>Blusa</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Institucional & Experiência HEVI (Alinhado à esquerda como os outros) -->
+      <div class="nav-drawer-section-label">Experiência HEVI</div>
+      <ul class="nav-drawer-list secondary-sublist">
+        <li>
+          <a href="#comunidade" class="nav-drawer-link" onclick="handleDrawerNav('inicio');">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <span>#ElasUsam HEVI</span>
+          </a>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-link" onclick="closeNavDrawer(); showToast('Tabela de medidas: P (36-38), M (40-42), G (44), GG (46)');">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <span>Tabela de Medidas</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="nav-drawer-link" onclick="closeNavDrawer(); showToast('Atendimento HEVI: (11) 98765-4321');">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Fale Conosco</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Rodapé da Gaveta -->
+    <div class="nav-drawer-footer">
+      <div class="drawer-benefit-badge">
+        <span><strong>10% OFF NO PIX</strong> • Frete Grátis acima de R$ 299</span>
+      </div>
+      <a href="https://www.instagram.com/hevi.fitwear/" target="_blank" rel="noopener noreferrer" class="drawer-instagram-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <span>@hevi.fitwear</span>
+      </a>
+    </div>
+  </aside>
 
   <!-- CART DRAWER SLIDE-OVER -->
   <div class="cart-drawer-backdrop" id="cartBackdrop"></div>
@@ -472,7 +534,7 @@
     <div class="cart-drawer-header">
       <h3 class="cart-drawer-title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-        Sua Sacola <span id="drawerItemCount" style="color: var(--hevi-terracotta); font-size: 0.95rem;">(1)</span>
+        Sua Sacola <span id="drawerItemCount" style="color: var(--hevi-terracotta); font-size: 0.95rem;">(0)</span>
       </h3>
       <button class="cart-close-btn" id="closeCartBtn" aria-label="Fechar Sacola">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -482,10 +544,10 @@
     <!-- Barra de Progresso do Frete Grátis -->
     <div class="cart-shipping-bar">
       <div class="shipping-msg" id="shippingMsg">
-        Faltam <strong style="color: var(--hevi-marsala);">R$ 119,09</strong> para <strong>FRETE GRÁTIS!</strong>
+        Faltam <strong style="color: var(--hevi-marsala);">R$ 299,00</strong> para <strong>FRETE GRÁTIS!</strong>
       </div>
       <div class="shipping-progress-track">
-        <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 60%;"></div>
+        <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%; transform: scaleX(0);"></div>
       </div>
     </div>
 
@@ -503,7 +565,7 @@
 
       <div class="cart-summary-row">
         <span>Subtotal:</span>
-        <span id="cartSubtotal">R$ 179,91</span>
+        <span id="cartSubtotal">R$ 0,00</span>
       </div>
       <div class="cart-summary-row">
         <span>Desconto:</span>
@@ -512,7 +574,7 @@
 
       <div class="cart-summary-row total">
         <span>Total no PIX:</span>
-        <span id="cartTotal" style="color: var(--hevi-marsala);">R$ 179,91</span>
+        <span id="cartTotal" style="color: var(--hevi-marsala);">R$ 0,00</span>
       </div>
 
       <button class="cart-checkout-btn" onclick="showToast('Redirecionando para o Checkout Seguro com 10% OFF no PIX!')">
@@ -576,6 +638,6 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="js/app.js?v=2.0"></script>
+  <script src="js/app.js?v=2.2"></script>
 </body>
 </html>

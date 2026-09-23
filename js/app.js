@@ -3,127 +3,127 @@
  * Arquitetura enxuta, alta performance e controle de visões mobile sem saltos
  */
 
-// Catálogo de Produtos Oficial HEVI
+// Catálogo Oficial HEVI - Coleção Mulheres
 const PRODUCTS_DATA = [
   {
     id: 'hevi-01',
-    title: 'Conjunto Sculp Terracota Seamless',
-    category: 'conjuntos',
+    title: 'Conjunto de Short Sculp Terracota',
+    category: 'conjunto-short',
     tag: 'mais-vendidos',
     priceOriginal: 249.90,
     pricePix: 179.91,
     installments: '10x de R$ 19,99 sem juros',
-    imgPrimary: 'assets/images/hevi_hero_banner.jpg',
-    imgHover: 'assets/images/hevi_terracotta_set.jpg',
+    imgPrimary: 'assets/images/conjunto_short_hevi.jpg',
+    imgHover: 'assets/images/conjunto_short_black.jpg',
     badge: 'Zero Transparência',
-    colors: ['#8A5338', '#5B2333', '#1D2A44', '#E6D8CB'],
+    colors: ['#8A5338', '#5B2333', '#2C2C2B', '#E6D8CB'],
     sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Conjunto de alta compressão em poliamida nobre com trama densa zero transparência. Top com sustentação reforçada e legging com cós anatômico.'
+    description: 'Conjunto de alta compressão com top esportivo de sustentação reforçada e short biker anatômico em poliamida nobre com trama zero transparência.'
   },
   {
     id: 'hevi-02',
-    title: 'Legging Cós Anatômico Marsala Contour',
-    category: 'legging',
-    tag: 'mais-vendidos',
-    priceOriginal: 169.90,
-    pricePix: 134.91,
-    installments: '10x de R$ 14,99 sem juros',
-    imgPrimary: 'assets/images/hevi_hero_banner.jpg',
-    imgHover: 'assets/images/hevi_navy_set.jpg',
+    title: 'Conjunto de Short Biker Black Contour',
+    category: 'conjunto-short',
+    tag: 'lancamentos',
+    priceOriginal: 229.90,
+    pricePix: 169.91,
+    installments: '10x de R$ 18,99 sem juros',
+    imgPrimary: 'assets/images/conjunto_short_black.jpg',
+    imgHover: 'assets/images/conjunto_short_hevi.jpg',
     badge: 'Alta Compressão',
-    colors: ['#5B2333', '#8A5338', '#2C2C2B'],
+    colors: ['#2C2C2B', '#8A5338', '#1D2A44'],
     sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Desenvolvida para treinos intensos. O cós anatômico duplo não enrola durante agachamentos e garante compressão confortável sem marcar.'
+    description: 'Desenvolvido para treinos intensos. O cós anatômico duplo com compressão modela a cintura sem enrolar em agachamentos.'
   },
   {
     id: 'hevi-03',
-    title: 'Macaquinho Seamless Boost Terracota',
+    title: 'Conjunto de Camisa UV Protect & Biker Navy',
+    category: 'conjunto-camisa',
+    tag: 'mais-vendidos',
+    priceOriginal: 289.90,
+    pricePix: 219.90,
+    installments: '10x de R$ 23,99 sem juros',
+    imgPrimary: 'assets/images/conjunto_camisa_hevi.jpg',
+    imgHover: 'assets/images/hevi_navy_set.jpg',
+    badge: 'Proteção UV50+',
+    colors: ['#1D2A44', '#8A5338', '#E6D8CB'],
+    sizes: ['P', 'M', 'G', 'GG'],
+    description: 'Trio athleisure sofisticado: camisa esportiva oversized leve com proteção solar UV50+, top de alta sustentação e short biker no azul marinho.'
+  },
+  {
+    id: 'hevi-04',
+    title: 'Macaquinho Seamless Boost Marsala',
+    category: 'macaquinho',
+    tag: 'mais-vendidos',
+    priceOriginal: 199.90,
+    pricePix: 149.90,
+    installments: '10x de R$ 15,99 sem juros',
+    imgPrimary: 'assets/images/macaquinho_hevi.jpg',
+    imgHover: 'assets/images/hevi_terracotta_set.jpg',
+    badge: 'Toque Acetinado',
+    colors: ['#5B2333', '#8A5338', '#2C2C2B'],
+    sizes: ['P', 'M', 'G'],
+    description: 'Peça única sem costura com toque acetinado. Modela o busto e o quadril com tecnologia térmica que proporciona liberdade absoluta de movimentos.'
+  },
+  {
+    id: 'hevi-05',
+    title: 'Macaquinho Sculpt Ribbed Terracota',
     category: 'macaquinho',
     tag: 'lancamentos',
     priceOriginal: 189.90,
     pricePix: 139.90,
-    installments: '10x de R$ 13,99 sem juros',
+    installments: '10x de R$ 14,99 sem juros',
     imgPrimary: 'assets/images/hevi_terracotta_set.jpg',
-    imgHover: 'assets/images/hevi_hero_banner.jpg',
+    imgHover: 'assets/images/macaquinho_hevi.jpg',
     badge: 'Lançamento',
-    colors: ['#8A5338', '#1D2A44', '#5B2333'],
+    colors: ['#8A5338', '#5B2333', '#1D2A44'],
     sizes: ['P', 'M', 'G'],
-    description: 'Peça única statement com toque acetinado. Modela o busto e o quadril com tecnologia sem costura (seamless) para máximo conforto térmico.'
-  },
-  {
-    id: 'hevi-04',
-    title: 'Conjunto Compression Navy Contour',
-    category: 'conjuntos',
-    tag: 'lancamentos',
-    priceOriginal: 229.90,
-    pricePix: 189.90,
-    installments: '10x de R$ 18,99 sem juros',
-    imgPrimary: 'assets/images/hevi_navy_set.jpg',
-    imgHover: 'assets/images/hevi_hero_banner.jpg',
-    badge: 'Butt-Lift Contour',
-    colors: ['#1D2A44', '#8A5338', '#5B2333'],
-    sizes: ['P', 'M', 'G', 'GG'],
-    description: 'O equilíbrio perfeito entre sobriedade e sofisticação no azul marinho noturno. Recortes estratégicos que valorizam as linhas musculares com elegância.'
-  },
-  {
-    id: 'hevi-05',
-    title: 'Top Alças Duplas Minimal Navy',
-    category: 'top',
-    tag: 'mais-vendidos',
-    priceOriginal: 99.90,
-    pricePix: 71.91,
-    installments: '10x de R$ 7,99 sem juros',
-    imgPrimary: 'assets/images/hevi_navy_set.jpg',
-    imgHover: 'assets/images/hevi_terracotta_set.jpg',
-    badge: 'Médio Impacto',
-    colors: ['#1D2A44', '#E6D8CB', '#5B2333'],
-    sizes: ['P', 'M', 'G'],
-    description: 'Top minimalista com forro duplo e entrada para bojo removível. Costas em tiras sofisticadas que proporcionam liberdade total de movimentos.'
+    description: 'Textura canelada com sustentação de médio impacto. Modela a silhueta com elegância, frescor e zero transparência comprovada.'
   },
   {
     id: 'hevi-06',
-    title: 'Short Biker Zero Transparência Terracota',
-    category: 'top',
+    title: 'Macacão Longo Compression Grafite',
+    category: 'macacao',
     tag: 'mais-vendidos',
-    priceOriginal: 119.90,
-    pricePix: 89.91,
-    installments: '10x de R$ 9,99 sem juros',
-    imgPrimary: 'assets/images/hevi_terracotta_set.jpg',
-    imgHover: 'assets/images/hevi_navy_set.jpg',
+    priceOriginal: 279.90,
+    pricePix: 199.90,
+    installments: '10x de R$ 21,99 sem juros',
+    imgPrimary: 'assets/images/macacao_hevi.jpg',
+    imgHover: 'assets/images/conjunto_short_black.jpg',
     badge: 'Zero Transparência',
-    colors: ['#8A5338', '#1D2A44', '#2C2C2B'],
+    colors: ['#2C2C2B', '#1D2A44', '#5B2333'],
     sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Comprimento ideal meia coxa com elástico siliconado interno que impede a barra de subir durante corridas ou agachamentos pesados.'
+    description: 'Macacão longo inteiriço de alta compressão muscular. Costas com design em tiras cruzadas ergonômicas e toque encorpado que não marca.'
   },
   {
     id: 'hevi-07',
-    title: 'Top Assimétrico Ribbed Marsala',
-    category: 'top',
+    title: 'Blusa Gola Alta Segunda Pele Nude',
+    category: 'blusa',
     tag: 'lancamentos',
-    priceOriginal: 109.90,
-    pricePix: 80.91,
-    installments: '10x de R$ 8,99 sem juros',
-    imgPrimary: 'assets/images/hevi_hero_banner.jpg',
-    imgHover: 'assets/images/hevi_terracotta_set.jpg',
-    badge: 'Trend 2026',
-    colors: ['#5B2333', '#E6D8CB', '#8A5338'],
-    sizes: ['P', 'M', 'G'],
-    description: 'Design de um ombro só com sustentação interna cruzada. Um dos ícones mais cobiçados da temporada que transita do treino ao look casual chic.'
+    priceOriginal: 159.90,
+    pricePix: 119.90,
+    installments: '10x de R$ 12,99 sem juros',
+    imgPrimary: 'assets/images/blusa_hevi.jpg',
+    imgHover: 'assets/images/blusa_cropped_hevi.jpg',
+    badge: 'Conforto Térmico',
+    colors: ['#E6D8CB', '#2C2C2B', '#8A5338'],
+    sizes: ['P', 'M', 'G', 'GG'],
+    description: 'Blusa manga longa com gola alta refinada em malha térmica de poliamida nobre ultra suave, respirável e com caimento impecável.'
   },
   {
     id: 'hevi-08',
-    title: 'Calça Flare Sculpting Grafite',
-    category: 'legging',
-    tag: 'lancamentos',
-    priceOriginal: 179.90,
-    pricePix: 149.90,
-    installments: '10x de R$ 14,99 sem juros',
-    imgPrimary: 'assets/images/hevi_navy_set.jpg',
-    imgHover: 'assets/images/hevi_terracotta_set.jpg',
-    badge: 'Corte Flare',
-    colors: ['#2C2C2B', '#1D2A44', '#8A5338'],
-    sizes: ['P', 'M', 'G', 'GG'],
-    description: 'Elegância máxima para quem busca estilo athleisure. Corte flare impecável que valoriza a postura corporal com poliamida encorpada.'
+    title: 'Blusa Cropped Ribbed Terracota',
+    category: 'blusa',
+    tag: 'mais-vendidos',
+    priceOriginal: 139.90,
+    pricePix: 99.90,
+    installments: '10x de R$ 10,99 sem juros',
+    imgPrimary: 'assets/images/blusa_cropped_hevi.jpg',
+    imgHover: 'assets/images/blusa_hevi.jpg',
+    badge: 'Trend 2026',
+    colors: ['#8A5338', '#5B2333', '#E6D8CB'],
+    sizes: ['P', 'M', 'G'],
+    description: 'Blusa cropped manga longa canelada com ajuste anatômico ao corpo. Peça chave do estilo athleisure que vai do treino à rotina casual.'
   }
 ];
 
@@ -136,21 +136,10 @@ const COLOR_NAMES = {
   '#2C2C2B': 'Preto Grafite'
 };
 
-// Estado Global da Aplicação
+// Estado Global da Aplicação (Inicia sem itens no carrinho nem favoritos)
 const State = {
-  cart: [
-    {
-      id: 'hevi-01',
-      title: 'Conjunto Sculp Terracota Seamless',
-      price: 179.91,
-      size: 'M',
-      color: '#8A5338',
-      colorName: 'Terracota',
-      img: 'assets/images/hevi_hero_banner.jpg',
-      qty: 1
-    }
-  ],
-  wishlist: ['hevi-01'],
+  cart: [],
+  wishlist: [],
   appliedCoupon: null,
   freeShippingThreshold: 299.00,
   activeFilter: 'todos',
@@ -161,6 +150,12 @@ const State = {
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar estado de histórico para navegação móvel com seta de voltar
+  if (!window.history.state) {
+    window.history.replaceState({ view: 'inicio' }, '', window.location.href);
+  }
+  setupHistoryNavigation();
+
   renderProducts();
   setupFilterListeners();
   setupCartListeners();
@@ -173,9 +168,121 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
+// CONTROLE DE NAVEGAÇÃO E HISTÓRICO MOBILE (Seta de Voltar do Celular)
+// ==========================================================================
+function setupHistoryNavigation() {
+  window.addEventListener('popstate', (e) => {
+    // 1. Se o modal de visualização rápida do produto estiver aberto, fechar
+    const quickViewModal = document.getElementById('quickViewBackdrop');
+    if (quickViewModal && quickViewModal.classList.contains('active')) {
+      closeQuickView(true);
+      return;
+    }
+
+    // 2. Se a sacola de compras estiver aberta, fechar
+    const cartDrawer = document.getElementById('cartDrawer');
+    if (cartDrawer && cartDrawer.classList.contains('active')) {
+      closeCartDrawer(true);
+      return;
+    }
+
+    // 3. Se o menu hambúrguer lateral estiver aberto, fechar
+    const navDrawer = document.getElementById('navDrawer');
+    if (navDrawer && navDrawer.classList.contains('active')) {
+      closeNavDrawer(true);
+      return;
+    }
+
+    // 4. Se o modal de busca do desktop estiver aberto, fechar
+    const searchModal = document.getElementById('searchModal');
+    if (searchModal && searchModal.classList.contains('active')) {
+      searchModal.classList.remove('active');
+      return;
+    }
+
+    // 5. Se estamos no celular e em outra visão (ex: 'colecao' ou 'buscar'), voltar para 'inicio'
+    if (window.innerWidth < 1024) {
+      const targetView = (e.state && e.state.view) ? e.state.view : 'inicio';
+      if (State.mobileActiveView !== targetView) {
+        switchMobileView(targetView, false);
+      }
+    }
+  });
+}
+
+// ==========================================================================
+// CONTROLE DO MENU HAMBÚRGUER LATERAL ESQUERDO
+// ==========================================================================
+function openNavDrawer() {
+  const drawer = document.getElementById('navDrawer');
+  const backdrop = document.getElementById('navDrawerBackdrop');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (drawer && backdrop) {
+    if (!drawer.classList.contains('active')) {
+      drawer.classList.add('active');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+      window.history.pushState({ overlay: 'navDrawer' }, '');
+    }
+  }
+}
+
+function closeNavDrawer(fromPopState = false) {
+  const drawer = document.getElementById('navDrawer');
+  const backdrop = document.getElementById('navDrawerBackdrop');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (drawer && backdrop && drawer.classList.contains('active')) {
+    drawer.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+
+    if (!fromPopState && window.history.state && window.history.state.overlay === 'navDrawer') {
+      window.history.back();
+    }
+  }
+}
+
+function handleDrawerNav(viewName) {
+  closeNavDrawer(true);
+  if (viewName === 'sacola') {
+    window.history.replaceState({ overlay: 'cartDrawer' }, '');
+    openCartDrawer(true);
+  } else if (viewName === 'inicio') {
+    if (window.history.state && window.history.state.overlay === 'navDrawer') {
+      window.history.back();
+    }
+    switchMobileView('inicio', false);
+  } else {
+    window.history.replaceState({ view: viewName }, '');
+    switchMobileView(viewName, false);
+  }
+}
+
+function handleDrawerCategory(category) {
+  closeNavDrawer(true);
+  window.history.replaceState({ view: 'colecao' }, '');
+  openCategoryFromHome(category);
+}
+
+// Fechar overlays ao pressionar Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeNavDrawer();
+    closeCartDrawer();
+    closeQuickView();
+    const searchModal = document.getElementById('searchModal');
+    if (searchModal && searchModal.classList.contains('active')) {
+      searchModal.classList.remove('active');
+    }
+  }
+});
+
+// ==========================================================================
 // MOBILE SPA VIEW-SWITCHING (Sem troca de altura ou saltos)
 // ==========================================================================
-function switchMobileView(viewName) {
+function switchMobileView(viewName, pushHistory = true) {
   if (viewName === 'sacola') {
     openCartDrawer();
     return;
@@ -184,20 +291,23 @@ function switchMobileView(viewName) {
   // Se o drawer da sacola estiver aberto, fechá-lo
   const drawer = document.getElementById('cartDrawer');
   if (drawer && drawer.classList.contains('active')) {
-    closeCartDrawer();
+    closeCartDrawer(true);
   }
 
+  // Se o menu lateral estiver aberto, fechá-lo
+  const navDrawer = document.getElementById('navDrawer');
+  if (navDrawer && navDrawer.classList.contains('active')) {
+    closeNavDrawer(true);
+  }
+
+  const previousView = State.mobileActiveView;
   State.mobileActiveView = viewName;
   document.body.setAttribute('data-active-view', viewName);
 
-  // Atualizar classe ativa na barra de navegação inferior
-  const navItems = document.querySelectorAll('.bottom-nav-item');
+  // Atualizar classe ativa no drawer de navegação lateral
+  const navItems = document.querySelectorAll('.nav-drawer-item');
   navItems.forEach(item => {
-    if (item.getAttribute('data-nav-target') === viewName) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
+    item.classList.toggle('active', item.getAttribute('data-nav-target') === viewName);
   });
 
   // Resetar scroll para o topo de forma instantânea sem saltos bruscos
@@ -213,11 +323,23 @@ function switchMobileView(viewName) {
   } else if (viewName === 'colecao') {
     renderProducts();
   }
+
+  // Salvar no histórico de navegação para a seta de voltar do celular
+  if (pushHistory && viewName !== previousView) {
+    if (viewName !== 'inicio') {
+      window.history.pushState({ view: viewName }, '');
+    }
+  }
 }
 
 function handleLogoClick() {
   if (window.innerWidth < 1024) {
-    switchMobileView('inicio');
+    if (State.mobileActiveView !== 'inicio') {
+      window.history.replaceState({ view: 'inicio' }, '');
+      switchMobileView('inicio', false);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   } else {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -296,14 +418,16 @@ function renderProducts() {
     filtered = PRODUCTS_DATA.filter(p => p.tag === 'mais-vendidos');
   } else if (State.activeFilter === 'lancamentos') {
     filtered = PRODUCTS_DATA.filter(p => p.tag === 'lancamentos');
-  } else if (State.activeFilter === 'conjuntos') {
-    filtered = PRODUCTS_DATA.filter(p => p.category === 'conjuntos');
-  } else if (State.activeFilter === 'leggings' || State.activeFilter === 'legging') {
-    filtered = PRODUCTS_DATA.filter(p => p.category === 'legging');
-  } else if (State.activeFilter === 'top' || State.activeFilter === 'tops') {
-    filtered = PRODUCTS_DATA.filter(p => p.category === 'top');
-  } else if (State.activeFilter === 'macaquinho' || State.activeFilter === 'macacoes') {
+  } else if (State.activeFilter === 'conjunto-short') {
+    filtered = PRODUCTS_DATA.filter(p => p.category === 'conjunto-short');
+  } else if (State.activeFilter === 'conjunto-camisa') {
+    filtered = PRODUCTS_DATA.filter(p => p.category === 'conjunto-camisa');
+  } else if (State.activeFilter === 'macaquinho') {
     filtered = PRODUCTS_DATA.filter(p => p.category === 'macaquinho');
+  } else if (State.activeFilter === 'macacao') {
+    filtered = PRODUCTS_DATA.filter(p => p.category === 'macacao');
+  } else if (State.activeFilter === 'blusa') {
+    filtered = PRODUCTS_DATA.filter(p => p.category === 'blusa');
   } else if (State.activeFilter !== 'todos') {
     filtered = PRODUCTS_DATA.filter(p => p.category === State.activeFilter);
   }
@@ -478,9 +602,9 @@ function setupCartListeners() {
   const closeCartBtn = document.getElementById('closeCartBtn');
   const backdrop = document.getElementById('cartBackdrop');
 
-  if (openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
-  if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
-  if (backdrop) backdrop.addEventListener('click', closeCartDrawer);
+  if (openCartBtn) openCartBtn.addEventListener('click', () => openCartDrawer());
+  if (closeCartBtn) closeCartBtn.addEventListener('click', () => closeCartDrawer());
+  if (backdrop) backdrop.addEventListener('click', () => closeCartDrawer());
 
   const couponBtn = document.getElementById('applyCouponBtn');
   const couponInput = document.getElementById('cartCouponInput');
@@ -498,36 +622,52 @@ function setupCartListeners() {
   }
 }
 
-function openCartDrawer() {
+function openCartDrawer(fromReplace = false) {
   const drawer = document.getElementById('cartDrawer');
   const backdrop = document.getElementById('cartBackdrop');
   if (drawer && backdrop) {
-    drawer.classList.add('active');
-    backdrop.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    if (!drawer.classList.contains('active')) {
+      drawer.classList.add('active');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
 
-    // Destacar Sacola na barra de navegação inferior
-    const navItems = document.querySelectorAll('.bottom-nav-item');
-    navItems.forEach(item => {
-      item.classList.toggle('active', item.getAttribute('data-nav-target') === 'sacola');
-    });
+      // Destacar Sacola no drawer lateral
+      const navItems = document.querySelectorAll('.nav-drawer-item');
+      navItems.forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-nav-target') === 'sacola');
+      });
+
+      if (!fromReplace) {
+        window.history.pushState({ overlay: 'cartDrawer' }, '');
+      }
+    }
   }
 }
 
-function closeCartDrawer() {
+function closeCartDrawer(fromPopState = false) {
   const drawer = document.getElementById('cartDrawer');
   const backdrop = document.getElementById('cartBackdrop');
-  if (drawer && backdrop) {
+  if (drawer && backdrop && drawer.classList.contains('active')) {
     drawer.classList.remove('active');
     backdrop.classList.remove('active');
     document.body.style.overflow = '';
 
-    // Restaurar a visão ativa anterior na barra de navegação inferior
-    const navItems = document.querySelectorAll('.bottom-nav-item');
+    // Restaurar a visão ativa anterior no drawer lateral
+    const navItems = document.querySelectorAll('.nav-drawer-item');
     navItems.forEach(item => {
       item.classList.toggle('active', item.getAttribute('data-nav-target') === State.mobileActiveView);
     });
+
+    if (!fromPopState && window.history.state && window.history.state.overlay === 'cartDrawer') {
+      window.history.back();
+    }
   }
+}
+
+function navigateFromCartToColecao() {
+  closeCartDrawer(true);
+  window.history.replaceState({ view: 'colecao' }, '');
+  switchMobileView('colecao', false);
 }
 
 function updateCartQty(idx, delta) {
@@ -571,8 +711,10 @@ function updateCartUI() {
 
   const totalItems = State.cart.reduce((sum, item) => sum + item.qty, 0);
   if (badgeCount) badgeCount.textContent = totalItems;
-  const bottomBadge = document.getElementById('bottomNavCartBadge');
-  if (bottomBadge) bottomBadge.textContent = totalItems;
+  const mobileCartBadge = document.getElementById('mobileCartCountBadge');
+  if (mobileCartBadge) mobileCartBadge.textContent = totalItems;
+  const navDrawerBadge = document.getElementById('navDrawerCartBadge');
+  if (navDrawerBadge) navDrawerBadge.textContent = totalItems;
   if (drawerItemCount) drawerItemCount.textContent = `(${totalItems})`;
 
   let subtotal = State.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -589,11 +731,14 @@ function updateCartUI() {
   // Frete grátis threshold
   if (shippingMsg && shippingFill) {
     const diff = State.freeShippingThreshold - subtotal;
-    if (diff <= 0) {
+    if (subtotal === 0) {
+      shippingMsg.innerHTML = `Faltam <strong style="color: var(--hevi-marsala);">R$ ${State.freeShippingThreshold.toFixed(2).replace('.', ',')}</strong> para <strong>FRETE GRÁTIS</strong>`;
+      shippingFill.style.transform = 'scaleX(0)';
+    } else if (diff <= 0) {
       shippingMsg.innerHTML = `<strong style="color: #2E7D32;">Parabéns! Você tem FRETE GRÁTIS.</strong>`;
       shippingFill.style.transform = 'scaleX(1)';
     } else {
-      const pct = Math.min(100, Math.max(10, (subtotal / State.freeShippingThreshold) * 100));
+      const pct = Math.min(100, Math.max(0, (subtotal / State.freeShippingThreshold) * 100));
       shippingMsg.innerHTML = `Faltam <strong style="color: var(--hevi-marsala);">R$ ${diff.toFixed(2).replace('.', ',')}</strong> para <strong>FRETE GRÁTIS</strong>`;
       shippingFill.style.transform = `scaleX(${pct / 100})`;
     }
@@ -613,7 +758,7 @@ function updateCartUI() {
         </div>
         <p style="font-weight: 700; color: var(--hevi-graphite);">Sua sacola está vazia</p>
         <p style="font-size: 0.82rem; color: var(--hevi-graphite-muted);">Escolha suas peças favoritas com 10% OFF no PIX.</p>
-        <button onclick="closeCartDrawer(); switchMobileView('colecao');" class="btn-primary" style="margin-top: 14px; width: auto; padding: 10px 22px;">Ver Coleção</button>
+        <button onclick="navigateFromCartToColecao();" class="btn-primary" style="margin-top: 14px; width: auto; padding: 10px 22px;">Ver Coleção Mulheres</button>
       </div>
     `;
     return;
@@ -645,7 +790,7 @@ function updateCartUI() {
 function setupQuickViewListeners() {
   const modalBackdrop = document.getElementById('quickViewBackdrop');
   const closeBtn = document.getElementById('modalCloseBtn');
-  if (closeBtn) closeBtn.addEventListener('click', closeQuickView);
+  if (closeBtn) closeBtn.addEventListener('click', () => closeQuickView());
   if (modalBackdrop) {
     modalBackdrop.addEventListener('click', (e) => {
       if (e.target === modalBackdrop) closeQuickView();
@@ -711,8 +856,9 @@ function openQuickView(prodId) {
         qty: 1
       });
       updateCartUI();
-      closeQuickView();
-      openCartDrawer();
+      closeQuickView(true);
+      window.history.replaceState({ overlay: 'cartDrawer' }, '');
+      openCartDrawer(true);
       showToast(`"${product.title}" (${activeColorName}) adicionado à sacola.`);
     };
   }
@@ -720,6 +866,7 @@ function openQuickView(prodId) {
   if (modal) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    window.history.pushState({ overlay: 'quickView', prodId: prodId }, '');
   }
 }
 
@@ -738,11 +885,15 @@ function selectModalColor(dot, color) {
   window.modalCurrentColorName = name;
 }
 
-function closeQuickView() {
+function closeQuickView(fromPopState = false) {
   const modal = document.getElementById('quickViewBackdrop');
-  if (modal) {
+  if (modal && modal.classList.contains('active')) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+
+    if (!fromPopState && window.history.state && window.history.state.overlay === 'quickView') {
+      window.history.back();
+    }
   }
 }
 
@@ -754,9 +905,15 @@ function setupSearchListeners() {
 
   if (toggleBtn && searchModal) {
     toggleBtn.addEventListener('click', () => {
+      const isOpening = !searchModal.classList.contains('active');
       searchModal.classList.toggle('active');
-      if (searchModal.classList.contains('active') && searchInput) {
-        searchInput.focus();
+      if (isOpening) {
+        if (searchInput) searchInput.focus();
+        window.history.pushState({ overlay: 'searchModal' }, '');
+      } else {
+        if (window.history.state && window.history.state.overlay === 'searchModal') {
+          window.history.back();
+        }
       }
     });
   }
